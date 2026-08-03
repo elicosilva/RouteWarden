@@ -11,6 +11,9 @@ and Next.js apps:
 It comments inline on the exact line in the PR. It never merges, approves,
 or blocks anything — a human always makes the final call.
 
+![RouteWarden PR Review Example](demo1.png)
+![RouteWarden PR Review Example](demo2.png)
+
 ## Why diff-aware, not full-repo
 
 Most SAST tools scan an entire repository and produce hundreds of findings,
