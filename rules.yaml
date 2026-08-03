@@ -1,0 +1,69 @@
+# RouteWarden auth-middleware catalog (rule R4).
+#
+# Two kinds of "providers" entries:
+#   - Bare (no dot), e.g. "requireAuth": matches any identifier whose LAST
+#     segment is this name — "myLib.requireAuth" and "requireAuth(x)" both
+#     match. Safe for names that are unambiguous on their own.
+#   - Qualified (has a dot), e.g. "auth.required": matches only that exact
+#     dotted form. Use this when the bare final segment alone would be too
+#     generic/risky to trust (e.g. "required" could be anything).
+#
+# public_route_keywords: route paths containing any of these (case-
+# insensitive substring) are NEVER flagged by mutable_no_auth, regardless
+# of middleware — these are auth entry-points that structurally cannot
+# require prior authentication (you can't need to be logged in to log in).
+# Kept deliberately narrow: broader exemptions (like bare "/users") risk
+# hiding a real missing-auth vulnerability, which is worse than an
+# easily-dismissed false positive (rule R1: a human reviews every finding
+# anyway).
+#
+# Add identifiers/keywords here as your project needs. No rebuild
+# required — this file is read at runtime.
+
+providers:
+  clerk:
+    - clerkMiddleware
+    - requireAuth
+    - ClerkExpressRequireAuth
+    - ClerkExpressWithAuth
+
+  supabase:
+    - requireSupabaseAuth
+    - supabaseAuthMiddleware
+    - withSupabaseAuth
+
+  auth0:
+    - checkJwt
+    - auth
+    - requiresAuth
+
+  nextauth:
+    - withAuth
+    - getServerSession
+    - authMiddleware
+
+  # The "RealWorld" reference-app convention (used across dozens of
+  # language/framework implementations of the RealWorld spec), where an
+  # `auth` module exports `.required` and `.optional` middleware.
+  realworld:
+    - auth.required
+
+  generic:
+    - authenticate
+    - isAuthenticated
+    - AuthGuard
+    - JwtAuthGuard
+    - requireLogin
+    - protect
+
+public_route_keywords:
+  - login
+  - logout
+  - signin
+  - signout
+  - register
+  - signup
+  - forgot-password
+  - password-reset
+  - reset-password
+  - refresh-token

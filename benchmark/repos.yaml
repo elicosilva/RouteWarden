@@ -1,0 +1,26 @@
+# Repositórios públicos, reais e populares usados no benchmark do
+# RouteWarden. Mistura Express, NestJS e Next.js — frameworks-alvo do
+# projeto (rule R4).
+repos:
+  - owner: gothinkster
+    name: node-express-realworld-example-app
+  - owner: tanem
+    name: express-bookshelf-realworld-example-app
+  - owner: expressjs
+    name: express
+  - owner: nestjs
+    name: nest
+  - owner: lujakob
+    name: nestjs-realworld-example-app
+  - owner: twentyhq
+    name: twenty
+  - owner: ghostfolio
+    name: ghostfolio
+  - owner: hoppscotch
+    name: hoppscotch
+  - owner: calcom
+    name: cal.com
+  - owner: documenso
+    name: documenso
+  - owner: dubinc
+    name: dub

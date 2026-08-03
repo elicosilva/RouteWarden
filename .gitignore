@@ -1,0 +1,22 @@
+# Binários
+/routewarden
+/server
+*.exe
+*.test
+*.out
+
+# Ambiente
+.env
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Build
+/dist/
+/bin/
+
+# Tree-sitter build artifacts (caso apareçam em fase futura)
+*.o
+*.so

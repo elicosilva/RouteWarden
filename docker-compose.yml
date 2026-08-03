@@ -1,0 +1,11 @@
+services:
+  routewarden:
+    build: .
+    ports:
+      - "8090:8080"
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - WEBHOOK_SECRET=${WEBHOOK_SECRET}
+      - RULES_YAML_PATH=/app/rules.yaml
+      - PORT=8080
+    restart: unless-stopped
