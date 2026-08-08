@@ -13,7 +13,7 @@ RUN go mod download
 COPY . .
 
 ENV CGO_ENABLED=1
-RUN go build -o /out/routewarden ./cmd/server
+RUN go build -o /out/routewarden ./cmd/action
 
 # Runtime stage: enxuto, sem toolchain de build (rule R9: custo de infra
 # baixo, roda numa VPS pequena).
