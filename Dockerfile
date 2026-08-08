@@ -30,4 +30,4 @@ COPY rules.yaml ./rules.yaml
 
 EXPOSE 8080
 
-ENTRYPOINT ["./routewarden"]
+ENTRYPOINT ["/app/routewarden"]
