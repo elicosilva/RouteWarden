@@ -42,7 +42,7 @@ func main() {
 
 	repoFull := requireEnv("GITHUB_REPOSITORY") // "owner/repo"
 	eventPath := requireEnv("GITHUB_EVENT_PATH")
-	rulesPath := envOrDefault("INPUT_RULES_PATH", "rules.yaml")
+	rulesPath := envOrDefault("INPUT_RULES_PATH", "/app/rules.yaml")
 
 	owner, repo, ok := strings.Cut(repoFull, "/")
 	if !ok {
