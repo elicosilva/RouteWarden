@@ -1,5 +1,5 @@
 name: 'RouteWarden'
-description: 'Diff-aware security scanner for PRs — flags mutable Express/NestJS/Next.js routes with no auth middleware and responses leaking sensitive fields. Deterministic, AST-based, human-in-the-loop.'
+description: 'Diff-aware PR security scanner: flags mutable Express/NestJS/Next.js routes with no auth middleware.'
 author: 'elicosilva'
 
 branding:
