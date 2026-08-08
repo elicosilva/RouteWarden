@@ -1,0 +1,21 @@
+# Exemplo de uso do RouteWarden como GitHub Action.
+# Copie este arquivo para .github/workflows/routewarden.yml no SEU
+# repositório — não precisa de servidor, Docker Compose ou webhook manual.
+name: RouteWarden Security Scan
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  pull-requests: write # necessário para comentar inline na PR
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: RouteWarden
+        uses: elicosilva/RouteWarden@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
