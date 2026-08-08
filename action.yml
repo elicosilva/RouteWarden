@@ -1,0 +1,27 @@
+name: 'RouteWarden'
+description: 'Diff-aware security scanner for PRs — flags mutable Express/NestJS/Next.js routes with no auth middleware and responses leaking sensitive fields. Deterministic, AST-based, human-in-the-loop.'
+author: 'elicosilva'
+
+branding:
+  icon: 'shield'
+  color: 'red'
+
+inputs:
+  github-token:
+    description: 'Token used to read the PR diff and post review comments. Usually the built-in GITHUB_TOKEN.'
+    required: true
+  rules-path:
+    description: 'Path to a custom rules.yaml (auth middleware catalog). Defaults to the bundled one.'
+    required: false
+    default: 'rules.yaml'
+
+outputs:
+  findings-count:
+    description: 'Number of findings RouteWarden posted as PR review comments.'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile.action'
+  env:
+    INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
+    INPUT_RULES_PATH: ${{ inputs.rules-path }}
