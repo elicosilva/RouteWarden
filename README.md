@@ -31,6 +31,30 @@ from a comment or a string.
 | NestJS | @Controller() classes with @Get/@Post/@Put/@Delete/@Patch() + @UseGuards() |
 | Next.js (App Router) | export async function GET/POST/PUT/DELETE/PATCH in route.ts |
 
+
+## GitHub Action
+
+The easiest way to use RouteWarden is directly in your GitHub Actions workflow:
+
+```yaml
+name: Security
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  routewarden:
+    runs-on: ubuntu-latest
+    steps:
+      - name: RouteWarden
+        uses: elicosilva/RouteWarden@V1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+```
 ## Auth middleware catalog
 
 RouteWarden ships with a starter catalog of recognized auth patterns
@@ -42,7 +66,7 @@ Known public auth entry-points (login, register, logout, password reset,
 ...) are never flagged, even without middleware — you can't require being
 logged in to log in.
 
-## Quickstart
+## Self-hosted server
 
 git clone https://github.com/YOUR_ORG/RouteWarden.git
 cd RouteWarden
