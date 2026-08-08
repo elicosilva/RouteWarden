@@ -16,6 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: RouteWarden
-        uses: elicosilva/RouteWarden@v1
+        uses: elicosilva/RouteWarden@V1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
