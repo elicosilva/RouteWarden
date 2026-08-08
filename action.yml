@@ -21,7 +21,7 @@ outputs:
 
 runs:
   using: 'docker'
-  image: 'Dockerfile.action'
+  image: 'Dockerfile'
   env:
     INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
     INPUT_RULES_PATH: ${{ inputs.rules-path }}
