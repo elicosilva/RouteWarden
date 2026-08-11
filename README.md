@@ -117,6 +117,21 @@ A dry-run benchmark was executed against major open-source Node.js/TypeScript co
 * **Low Noise Rate:** Large core frameworks (such as `nestjs/nest`) yielded a ~1% flag rate, demonstrating that RouteWarden's AST engine effectively filters out non-route changes and avoids spamming developers with false alarms.
 * **Rate Limits:** When running historical scans fetching multiple files per PR, pass an authenticated `GITHUB_TOKEN` and use `-delay-ms 1000` (or higher) to respect GitHub's API rate limits.
 
+## AI Agent Skill (Diff-Aware Security Auditor)
+
+RouteWarden provides a native **security agent skill** located at [`.agents/skills/routewarden/SKILL.md`](.agents/skills/routewarden/SKILL.md). It enables AI coding assistants (Google Antigravity, Claude Code, Cursor, VS Code) to perform diff-aware security code reviews directly in your workspace using native bash and git diff capabilities — requiring zero binary setup.
+
+### Automated Security Checks:
+- **Express, NestJS & Next.js Security**: Detects unprotected mutable routes (`POST`/`PUT`/`DELETE`/`PATCH`) missing recognized authentication middleware (`CWE-306`).
+- **Sensitive Data Leakage**: Flags response payloads exposing sensitive fields such as `token`, `password`, `secret`, `mock`, or `bypass` (`CWE-200`).
+- **Diff-Aware Scanning**: Evaluates only modified or added lines in your local working tree (`git diff HEAD`).
+
+### How an Agent Uses This Skill
+When an AI agent is asked to perform a "security audit", "route check", or "code review", it automatically activates [`.agents/skills/routewarden/SKILL.md`](.agents/skills/routewarden/SKILL.md) to inspect uncommitted changes against the auth middleware catalog.
+
+### Phase 2 Roadmap (MCP Server)
+See [.agents/skills/routewarden/ROADMAP.md](.agents/skills/routewarden/ROADMAP.md) for the technical roadmap on the upcoming native Go MCP Server (`cmd/mcp`), GoReleaser pipeline, and `npx routewarden-mcp` distribution strategy.
+
 ## Project layout
 
 pkg/diff/            unified diff parsing (which lines were added)
@@ -139,3 +154,5 @@ LICENSE).
 The easiest way to improve detection accuracy is extending rules.yaml with
 your project's auth middleware names or additional public-route keywords —
 no code change required.
+
+
